@@ -1,2 +1,13 @@
 /.idea/
 /node_modules/
+/test_source/citygrid_ambient.png
+/test_source/citygrid_ambient_analysis.png
+/test_source/citygrid_ambient_shaded.png
+/test_source/citygrid_ao.png
+/test_source/citygrid_shaded.png
+/test_source/cityhouse_ao.png
+/test_source/cityhouse_shaded.png
+/test_source/normal_aoi.png
+/test_source/normal_heightmap.png
+/test_source/normal_normal.png
+/test_source/shadowed.png

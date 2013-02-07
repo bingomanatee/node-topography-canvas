@@ -13,25 +13,27 @@ function TopoGrid(mixins, config, cb) {
 	return topo.TopoGrid(mixins, config, cb);
 }
 
-module.exports = {
-	TopoGrid: TopoGrid,
+var exp = _.clone(topo);
 
-	image_file_topos: function (image_files, cb) {
-		var gate = Gate.create();
+exp.TopoGrid = TopoGrid;
 
-		var TopoGrid = module.exports.TopoGrid;
+exp.image_file_topos = function (image_files, cb) {
+	var gate = Gate.create();
 
-		_.each(image_files, function (file) {
-			TopoGrid({}, {source: file, source_type: 'image_file'}, gate.latch());
-		});
+	var TopoGrid = module.exports.TopoGrid;
 
-		gate.await(function (err, topo_grids) {
-			cb(null, _.reduce(_.values(topo_grids),
-				function (out, props) {
-					if (props[0]) throw props[0];
-					out.push(props[1]);
-					return out;
-				}, []));
-		});
-	}
-};
+	_.each(image_files, function (file) {
+		TopoGrid({}, {source: file, source_type: 'image_file'}, gate.latch());
+	});
+
+	gate.await(function (err, topo_grids) {
+		cb(null, _.reduce(_.values(topo_grids),
+			function (out, props) {
+				if (props[0]) throw props[0];
+				out.push(props[1]);
+				return out;
+			}, []));
+	});
+}
+
+module.exports = exp;
