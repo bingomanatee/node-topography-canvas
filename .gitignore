@@ -11,3 +11,6 @@
 /test_source/normal_heightmap.png
 /test_source/normal_normal.png
 /test_source/shadowed.png
+/.DS_Store
+/browserify_build.js
+/node-topograpny-browser.js
